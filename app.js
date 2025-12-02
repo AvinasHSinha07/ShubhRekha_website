@@ -1,51 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const homePage = document.getElementById("homePage");
-  const bookingPage = document.getElementById("bookingPage");
-
-  function showHome() {
-    homePage.classList.remove("hidden");
-    bookingPage.classList.add("hidden");
+  
+  // 1. Initialize Icons
+  // This looks for the <i data-lucide="..."> tags and turns them into SVGs
+  if (window.lucide && typeof window.lucide.createIcons === "function") {
+    window.lucide.createIcons();
   }
 
-  function showBooking() {
-    homePage.classList.add("hidden");
-    bookingPage.classList.remove("hidden");
-  }
+  // 2. Logic for "Book a Reading" Buttons
+  // Instead of hiding pages, we simply scroll smoothly to the contact form.
+  const contactForm = document.querySelector("form[name='contact']");
+  
+  // We select ALL buttons on the page
+  const allButtons = document.querySelectorAll("button");
 
-  function wireBookButtons() {
-    const bookButtons = document.querySelectorAll("[data-book-click]");
-    bookButtons.forEach((btn) => {
-      btn.addEventListener("click", showBooking);
-    });
-  }
+  allButtons.forEach((btn) => {
+    // We attach the click event ONLY if the button text is "Book a Reading" 
+    // OR if it has the specific data attribute you added in the HTML
+    if (btn.innerText.includes("Book a Reading") || btn.hasAttribute("data-book-click")) {
+      
+      btn.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent default browser jump
 
-  function wireBackButtons() {
-    const backButtons = document.querySelectorAll("[data-back-home]");
-    backButtons.forEach((btn) => {
-      btn.addEventListener("click", showHome);
-    });
-  }
+        if (contactForm) {
+          // Smooth scroll to the form
+          contactForm.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  function setYear() {
-    const yearSpan = document.getElementById("yearSpan");
-    if (yearSpan) {
-      yearSpan.textContent = new Date().getFullYear().toString();
+          // Optional: Highlight the Name input field so they can type immediately
+          const firstInput = contactForm.querySelector("input");
+          if (firstInput) {
+            // Small delay to wait for the scroll to finish
+            setTimeout(() => {
+              firstInput.focus();
+            }, 800);
+          }
+        }
+      });
     }
-  }
+  });
 
-  function initIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === "function") {
-      window.lucide.createIcons();
-    }
+  // 3. Set Dynamic Year (If you add <span id="yearSpan"></span> in your footer later)
+  const yearSpan = document.getElementById("yearSpan");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear().toString();
   }
-
-  function init() {
-    showHome();          // default -> "home" page
-    wireBookButtons();
-    wireBackButtons();
-    setYear();
-    initIcons();
-  }
-
-  init();
+  
 });
