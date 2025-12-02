@@ -885,7 +885,14 @@
           <div class="bg-white rounded-3xl p-8 shadow-lg">
             <h3 class="text-orange-900 mb-6 text-2xl">Send us a Message</h3>
 
-            <form class="space-y-4">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              class="space-y-4"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+
               <div>
                 <label for="name" class="block text-orange-900 mb-2 text-sm">
                   Full Name *
@@ -893,6 +900,8 @@
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  required
                   class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                   placeholder="Enter your name"
                 />
@@ -905,6 +914,8 @@
                 <input
                   type="tel"
                   id="phone"
+                  name="phone"
+                  required
                   class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                   placeholder="+91 98765 43210"
                 />
@@ -917,6 +928,7 @@
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                   placeholder="your.email@example.com"
                 />
@@ -928,10 +940,11 @@
                 </label>
                 <select
                   id="service"
+                  name="service"
                   class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
                 >
-                  <option>Palm Reading</option>
-                  <option>Dream Analysis</option>
+                  <option value="Palm Reading">Palm Reading</option>
+                  <option value="Dream Analysis">Dream Analysis</option>
                 </select>
               </div>
 
@@ -941,6 +954,7 @@
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows="4"
                   class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors resize-none"
                   placeholder="Any specific questions or concerns..."
