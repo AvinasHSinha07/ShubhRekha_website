@@ -7,13 +7,11 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body
     class="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-red-50"
   >
-    <!-- SUCCESS VIEW (shown after submit) -->
     <div
       id="bookingSuccessView"
       class="hidden min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-red-50 flex items-center justify-center px-4"
@@ -63,9 +61,7 @@
       </div>
     </div>
 
-    <!-- FORM VIEW -->
     <div id="bookingFormView" class="min-h-screen">
-      <!-- Hero Section -->
       <section
         class="bg-gradient-to-br from-orange-400 via-red-400 to-pink-500 text-white py-16 px-4"
       >
@@ -91,9 +87,16 @@
         </div>
       </section>
 
-      <form id="bookingForm">
+      <form id="bookingForm" name="booking" method="POST" data-netlify="true">
+        
+        <input type="hidden" name="form-name" value="booking" />
+
+        <input type="hidden" name="appointmentType" id="hiddenType" />
+        <input type="hidden" name="selectedDate" id="hiddenDate" />
+        <input type="hidden" name="selectedTime" id="hiddenTime" />
+        <input type="hidden" name="totalPrice" id="hiddenPrice" />
+
         <div class="container mx-auto max-w-6xl px-4 py-12">
-          <!-- Appointment Type Selector -->
           <div class="mb-12">
             <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
               Choose Consultation Type
@@ -107,7 +110,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Online Consultation Card -->
               <div
                 data-appointment-type="online"
                 class="booking-type-card bg-white rounded-3xl p-8 shadow-lg cursor-pointer transition-all"
@@ -146,7 +148,6 @@
                 </div>
               </div>
 
-              <!-- In-Person Consultation Card -->
               <div
                 data-appointment-type="in-person"
                 class="booking-type-card bg-white rounded-3xl p-8 shadow-lg cursor-pointer transition-all"
@@ -187,7 +188,6 @@
               </div>
             </div>
 
-            <!-- Service Selection -->
             <div class="mt-8 max-w-md mx-auto">
               <label class="block text-orange-900 mb-2">
                 Select Service *
@@ -197,6 +197,7 @@
               </div>
               <select
                 id="bookingService"
+                name="service"
                 class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
               >
                 <option value="">Choose a service...</option>
@@ -206,7 +207,6 @@
             </div>
           </div>
 
-          <!-- Scheduler Section -->
           <div class="mb-12">
             <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
               Select Date &amp; Time
@@ -220,7 +220,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <!-- Calendar -->
               <div id="calendarCard" class="bg-white rounded-3xl p-8 shadow-lg">
                 <div class="flex items-center justify-between mb-6">
                   <h3 class="text-orange-900 text-xl">Choose a Date</h3>
@@ -228,7 +227,6 @@
                 </div>
 
                 <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-sm">
-                  <!-- Weekday headers -->
                   <div class="text-center text-xs text-orange-600 py-2">
                     Sun
                   </div>
@@ -250,15 +248,13 @@
                   <div class="text-center text-xs text-orange-600 py-2">
                     Sat
                   </div>
-                  <!-- Date cells will be injected by JS -->
-                </div>
+                  </div>
 
                 <div class="text-center text-xs text-orange-600 mt-4">
                   Showing next 6 months available
                 </div>
               </div>
 
-              <!-- Time Slots -->
               <div id="timeCard" class="bg-white rounded-3xl p-8 shadow-lg">
                 <div class="flex items-center justify-between mb-6">
                   <h3 class="text-orange-900 text-xl">Choose a Time</h3>
@@ -341,7 +337,6 @@
             </div>
           </div>
 
-          <!-- Client Information Form -->
           <div class="mb-12">
             <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
               Your Information
@@ -363,6 +358,7 @@
                     <input
                       type="text"
                       id="fullName"
+                      name="fullName"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="Enter your full name"
                     />
@@ -381,6 +377,7 @@
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="your.email@example.com"
                     />
@@ -401,6 +398,7 @@
                     <input
                       type="tel"
                       id="phone"
+                      name="phone"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="+91 98765 43210"
                     />
@@ -418,6 +416,7 @@
                     </div>
                     <select
                       id="gender"
+                      name="gender"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
                     >
                       <option value="">Select gender</option>
@@ -442,6 +441,7 @@
                     <input
                       type="date"
                       id="dateOfBirth"
+                      name="dateOfBirth"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                     />
                   </div>
@@ -459,6 +459,7 @@
                     <input
                       type="text"
                       id="placeOfBirth"
+                      name="placeOfBirth"
                       class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
                       placeholder="City, State"
                     />
@@ -471,6 +472,7 @@
                   </label>
                   <textarea
                     id="notes"
+                    name="notes"
                     rows="4"
                     class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors resize-none"
                     placeholder="Any specific questions or concerns..."
@@ -480,7 +482,6 @@
             </div>
           </div>
 
-          <!-- Summary + CTA -->
           <div class="max-w-3xl mx-auto mb-12">
             <div
               class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 shadow-lg"
@@ -558,7 +559,6 @@
       </form>
     </div>
 
-    <!-- BOOKING PAGE LOGIC -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (window.lucide && typeof window.lucide.createIcons === "function") {
@@ -574,6 +574,12 @@
         let service = null; // "palm-reading" | "dream-analysis" | null
         let selectedDate = null; // Date object
         let selectedTime = null; // string
+
+        // Hidden Inputs References (For Netlify)
+        const hiddenType = document.getElementById("hiddenType");
+        const hiddenDate = document.getElementById("hiddenDate");
+        const hiddenTime = document.getElementById("hiddenTime");
+        const hiddenPrice = document.getElementById("hiddenPrice");
 
         const bookingForm = document.getElementById("bookingForm");
         const bookingFormView = document.getElementById("bookingFormView");
@@ -664,7 +670,8 @@
             cell.dataset.date = date.toISOString();
 
             cell.addEventListener("click", function () {
-              const allCells = calendarGrid.querySelectorAll(".booking-date");
+              const allCells =
+                calendarGrid.querySelectorAll(".booking-date");
               allCells.forEach(function (c) {
                 c.classList.remove(
                   "bg-gradient-to-br",
@@ -694,11 +701,14 @@
         }
 
         function updateSummary() {
+          // Update Logic & Fill Hidden Inputs
           if (appointmentType) {
             summaryType.textContent =
               appointmentType === "in-person" ? "In person" : "Online";
+            hiddenType.value = appointmentType; // Save to hidden input
           } else {
             summaryType.textContent = "Not selected";
+            hiddenType.value = "";
           }
 
           if (service === "palm-reading") {
@@ -709,9 +719,25 @@
             summaryService.textContent = "Not selected";
           }
 
-          summaryDate.textContent = formatDateForSummary(selectedDate);
-          summaryTime.textContent = selectedTime || "Not selected";
-          summaryAmount.textContent = "₹" + getTotalPrice();
+          if (selectedDate) {
+            summaryDate.textContent = formatDateForSummary(selectedDate);
+            hiddenDate.value = selectedDate.toDateString(); // Save to hidden input
+          } else {
+            summaryDate.textContent = "Not selected";
+            hiddenDate.value = "";
+          }
+
+          if (selectedTime) {
+            summaryTime.textContent = selectedTime;
+            hiddenTime.value = selectedTime; // Save to hidden input
+          } else {
+            summaryTime.textContent = "Not selected";
+            hiddenTime.value = "";
+          }
+
+          const price = getTotalPrice();
+          summaryAmount.textContent = "₹" + price;
+          hiddenPrice.value = price; // Save to hidden input
         }
 
         function clearFieldError(key) {
@@ -848,71 +874,44 @@
           bookingForm.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            if (!validateForm()) return;
+            if (!validateForm()) {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              return;
+            }
 
-            const emailBody =
-              "New Booking Request - ShubhRekha Palmistry\n\n" +
-              "Consultation Type: " +
-              (appointmentType ? appointmentType.toUpperCase() : "") +
-              "\n" +
-              "Service: " +
-              (service === "palm-reading"
-                ? "Palm Reading"
-                : service === "dream-analysis"
-                ? "Dream Analysis"
-                : "") +
-              "\n" +
-              "Date: " +
-              formatDateForSummary(selectedDate) +
-              "\n" +
-              "Time: " +
-              (selectedTime || "") +
-              "\n" +
-              "Duration: 30-45 minutes\n" +
-              "Price: ₹" +
-              getTotalPrice() +
-              "\n\n" +
-              "Client Information:\n" +
-              "Full Name: " +
-              (fields.fullName.value || "") +
-              "\n" +
-              "Email: " +
-              (fields.email.value || "") +
-              "\n" +
-              "Phone: " +
-              (fields.phone.value || "") +
-              "\n" +
-              "Gender: " +
-              (fields.gender.value || "") +
-              "\n" +
-              "Date of Birth: " +
-              (fields.dateOfBirth.value || "") +
-              "\n" +
-              "Place of Birth: " +
-              (fields.placeOfBirth.value || "") +
-              "\n\n" +
-              "Additional Notes:\n" +
-              (fields.notes.value || "None");
+            // --- NETLIFY AJAX SUBMISSION ---
+            const myFormData = new FormData(bookingForm);
 
-            console.log("Email would be sent to: mohit.cs.garg@gmail.com");
-            console.log("Email content:\n" + emailBody);
+            fetch("/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: new URLSearchParams(myFormData).toString(),
+            })
+              .then(() => {
+                // Success Logic
+                successService.textContent =
+                  service === "palm-reading"
+                    ? "Palm Reading"
+                    : service === "dream-analysis"
+                    ? "Dream Analysis"
+                    : "";
+                successDate.textContent = selectedDate
+                  ? selectedDate.toLocaleDateString("en-IN")
+                  : "";
+                successTime.textContent = selectedTime || "";
+                successAmount.textContent = "₹" + getTotalPrice();
 
-            successService.textContent =
-              service === "palm-reading"
-                ? "Palm Reading"
-                : service === "dream-analysis"
-                ? "Dream Analysis"
-                : "";
-            successDate.textContent = selectedDate
-              ? selectedDate.toLocaleDateString("en-IN")
-              : "";
-            successTime.textContent = selectedTime || "";
-            successAmount.textContent = "₹" + getTotalPrice();
+                bookingFormView.classList.add("hidden");
+                bookingSuccessView.classList.remove("hidden");
 
-            bookingFormView.classList.add("hidden");
-            bookingSuccessView.classList.remove("hidden");
-
-            window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              })
+              .catch((error) => {
+                alert("Submission failed. Please try again.");
+                console.error(error);
+              });
           });
         }
 
