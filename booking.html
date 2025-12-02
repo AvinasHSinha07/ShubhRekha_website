@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book an Appointment – ShubhRekha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-red-50"
+  >
+    <!-- SUCCESS VIEW (shown after submit) -->
+    <div
+      id="bookingSuccessView"
+      class="hidden min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-red-50 flex items-center justify-center px-4"
+    >
+      <div
+        class="max-w-2xl w-full bg-white rounded-3xl p-12 shadow-xl text-center"
+      >
+        <div
+          class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center mx-auto mb-6"
+        >
+          <i data-lucide="check" class="w-12 h-12 text-white"></i>
+        </div>
+        <h2 class="text-orange-900 mb-4 text-3xl sm:text-4xl">Thank You!</h2>
+        <p class="text-orange-800 mb-8 text-lg">
+          Your booking request has been submitted successfully. We will contact
+          you shortly to confirm your appointment.
+        </p>
+        <div
+          class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 mb-8"
+        >
+          <h3 class="text-orange-900 mb-4 text-xl">Booking Details</h3>
+          <div class="space-y-2 text-left text-sm">
+            <div class="flex justify-between">
+              <span class="text-orange-700">Service:</span>
+              <span id="successService" class="text-orange-900"></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-orange-700">Date:</span>
+              <span id="successDate" class="text-orange-900"></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-orange-700">Time:</span>
+              <span id="successTime" class="text-orange-900"></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-orange-700">Amount:</span>
+              <span id="successAmount" class="text-orange-900"></span>
+            </div>
+          </div>
+        </div>
+        <a
+          href="index.html"
+          class="inline-block w-full py-4 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-lg hover:from-orange-500 hover:to-red-500 transition-all shadow-lg text-center"
+        >
+          Return to Home
+        </a>
+      </div>
+    </div>
+
+    <!-- FORM VIEW -->
+    <div id="bookingFormView" class="min-h-screen">
+      <!-- Hero Section -->
+      <section
+        class="bg-gradient-to-br from-orange-400 via-red-400 to-pink-500 text-white py-16 px-4"
+      >
+        <div class="container mx-auto max-w-6xl">
+          <a
+            href="index.html"
+            class="flex items-center gap-2 mb-8 text-orange-100 hover:text-white transition-colors"
+          >
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            <span>Back to Home</span>
+          </a>
+
+          <div class="text-center">
+            <h1 class="mb-4 text-4xl sm:text-5xl lg:text-6xl">
+              Book an Appointment
+            </h1>
+            <p class="text-orange-50 text-lg max-w-2xl mx-auto">
+              Choose your consultation type and schedule a session with Mr.
+              Umesh Garg. Select a convenient time for your spiritual guidance
+              journey.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <form id="bookingForm">
+        <div class="container mx-auto max-w-6xl px-4 py-12">
+          <!-- Appointment Type Selector -->
+          <div class="mb-12">
+            <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
+              Choose Consultation Type
+            </h2>
+
+            <div
+              id="appointmentTypeError"
+              class="text-red-500 text-center mb-4 hidden"
+            >
+              Please select a consultation type
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Online Consultation Card -->
+              <div
+                data-appointment-type="online"
+                class="booking-type-card bg-white rounded-3xl p-8 shadow-lg cursor-pointer transition-all"
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center"
+                  >
+                    <i data-lucide="video" class="w-8 h-8 text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-orange-900 text-2xl">
+                      Online Consultation
+                    </h3>
+                    <i
+                      data-lucide="check-circle"
+                      class="type-check hidden w-6 h-6 text-orange-500 mt-1"
+                    ></i>
+                  </div>
+                </div>
+
+                <p class="text-orange-800 mb-4 text-sm">
+                  Connect from anywhere through video call. Perfect for those
+                  who prefer remote sessions or are located outside Mumbai.
+                </p>
+
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-orange-700">Palm Reading:</span>
+                    <span class="text-orange-900">₹2,500 (30-45 min)</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-orange-700">Dream Analysis:</span>
+                    <span class="text-orange-900">₹1,500 (30-45 min)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- In-Person Consultation Card -->
+              <div
+                data-appointment-type="in-person"
+                class="booking-type-card bg-white rounded-3xl p-8 shadow-lg cursor-pointer transition-all"
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <div
+                    class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center"
+                  >
+                    <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-orange-900 text-2xl">
+                      In-Person Consultation
+                    </h3>
+                    <i
+                      data-lucide="check-circle"
+                      class="type-check hidden w-6 h-6 text-orange-500 mt-1"
+                    ></i>
+                  </div>
+                </div>
+
+                <p class="text-orange-800 mb-4 text-sm">
+                  Visit our Mumbai office for a traditional face-to-face
+                  consultation. Experience the authentic energy of in-person
+                  guidance.
+                </p>
+
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-orange-700">Palm Reading:</span>
+                    <span class="text-orange-900">₹2,500 (30-45 min)</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-orange-700">Dream Analysis:</span>
+                    <span class="text-orange-900">₹1,500 (30-45 min)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service Selection -->
+            <div class="mt-8 max-w-md mx-auto">
+              <label class="block text-orange-900 mb-2">
+                Select Service *
+              </label>
+              <div id="serviceError" class="text-red-500 text-sm mb-2 hidden">
+                Please select a service
+              </div>
+              <select
+                id="bookingService"
+                class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
+              >
+                <option value="">Choose a service...</option>
+                <option value="palm-reading">Palm Reading</option>
+                <option value="dream-analysis">Dream Analysis</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Scheduler Section -->
+          <div class="mb-12">
+            <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
+              Select Date &amp; Time
+            </h2>
+
+            <div
+              id="dateTimeError"
+              class="text-red-500 text-center mb-4 hidden"
+            >
+              Please select both date and time
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <!-- Calendar -->
+              <div id="calendarCard" class="bg-white rounded-3xl p-8 shadow-lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-orange-900 text-xl">Choose a Date</h3>
+                  <i data-lucide="calendar" class="w-6 h-6 text-orange-500"></i>
+                </div>
+
+                <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-sm">
+                  <!-- Weekday headers -->
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Sun
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Mon
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Tue
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Wed
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Thu
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Fri
+                  </div>
+                  <div class="text-center text-xs text-orange-600 py-2">
+                    Sat
+                  </div>
+                  <!-- Date cells will be injected by JS -->
+                </div>
+
+                <div class="text-center text-xs text-orange-600 mt-4">
+                  Showing next 6 months available
+                </div>
+              </div>
+
+              <!-- Time Slots -->
+              <div id="timeCard" class="bg-white rounded-3xl p-8 shadow-lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-orange-900 text-xl">Choose a Time</h3>
+                  <i data-lucide="clock" class="w-6 h-6 text-orange-500"></i>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                  <button
+                    type="button"
+                    data-time="9:00 AM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    9:00 AM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="10:00 AM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    10:00 AM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="11:00 AM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    11:00 AM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="12:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    12:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="2:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    2:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="3:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    3:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="4:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    4:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="5:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    5:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="6:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    6:00 PM
+                  </button>
+                  <button
+                    type="button"
+                    data-time="7:00 PM"
+                    class="time-slot bg-orange-100 text-orange-900 hover:bg-orange-200 py-3 px-4 rounded-full transition-all"
+                  >
+                    7:00 PM
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Information Form -->
+          <div class="mb-12">
+            <h2 class="text-orange-900 mb-6 text-2xl sm:text-3xl text-center">
+              Your Information
+            </h2>
+
+            <div class="bg-white rounded-3xl p-8 shadow-lg max-w-3xl mx-auto">
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Full Name *
+                    </label>
+                    <div
+                      id="error-fullName"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <input
+                      type="text"
+                      id="fullName"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Email *
+                    </label>
+                    <div
+                      id="error-email"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <input
+                      type="email"
+                      id="email"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Phone Number *
+                    </label>
+                    <div
+                      id="error-phone"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <input
+                      type="tel"
+                      id="phone"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Gender *
+                    </label>
+                    <div
+                      id="error-gender"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <select
+                      id="gender"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
+                    >
+                      <option value="">Select gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Date of Birth *
+                    </label>
+                    <div
+                      id="error-dateOfBirth"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <input
+                      type="date"
+                      id="dateOfBirth"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-orange-900 mb-2 text-sm">
+                      Place of Birth *
+                    </label>
+                    <div
+                      id="error-placeOfBirth"
+                      class="text-red-500 text-xs mb-1 hidden"
+                    >
+                      Required field
+                    </div>
+                    <input
+                      type="text"
+                      id="placeOfBirth"
+                      class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                      placeholder="City, State"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-orange-900 mb-2 text-sm">
+                    Notes / Message (Optional)
+                  </label>
+                  <textarea
+                    id="notes"
+                    rows="4"
+                    class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                    placeholder="Any specific questions or concerns..."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary + CTA -->
+          <div class="max-w-3xl mx-auto mb-12">
+            <div
+              class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 shadow-lg"
+            >
+              <h3 class="text-orange-900 mb-6 text-2xl">Booking Summary</h3>
+
+              <div class="space-y-4 mb-8 text-sm">
+                <div
+                  class="flex justify-between items-center pb-3 border-b border-orange-200"
+                >
+                  <span class="text-orange-700">Consultation Type:</span>
+                  <span id="summaryType" class="text-orange-900"
+                    >Not selected</span
+                  >
+                </div>
+
+                <div
+                  class="flex justify-between items-center pb-3 border-b border-orange-200"
+                >
+                  <span class="text-orange-700">Service:</span>
+                  <span id="summaryService" class="text-orange-900"
+                    >Not selected</span
+                  >
+                </div>
+
+                <div
+                  class="flex justify-between items-center pb-3 border-b border-orange-200"
+                >
+                  <span class="text-orange-700">Date:</span>
+                  <span id="summaryDate" class="text-orange-900"
+                    >Not selected</span
+                  >
+                </div>
+
+                <div
+                  class="flex justify-between items-center pb-3 border-b border-orange-200"
+                >
+                  <span class="text-orange-700">Time:</span>
+                  <span id="summaryTime" class="text-orange-900"
+                    >Not selected</span
+                  >
+                </div>
+
+                <div
+                  class="flex justify-between items-center pb-3 border-b border-orange-200"
+                >
+                  <span class="text-orange-700">Duration:</span>
+                  <span class="text-orange-900">30-45 minutes</span>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                  <span class="text-orange-900 text-xl">Total Amount:</span>
+                  <span id="summaryAmount" class="text-orange-900 text-3xl"
+                    >₹0</span
+                  >
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-4 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-lg hover:from-orange-500 hover:to-red-500 transition-all shadow-lg mb-4"
+              >
+                Confirm Booking
+              </button>
+
+              <a
+                href="index.html"
+                class="inline-block w-full py-3 text-orange-700 hover:text-orange-900 transition-colors text-center"
+              >
+                Cancel and Go Back
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- BOOKING PAGE LOGIC -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.lucide && typeof window.lucide.createIcons === "function") {
+          window.lucide.createIcons();
+        }
+
+        const prices = {
+          "palm-reading": 2500,
+          "dream-analysis": 1500,
+        };
+
+        let appointmentType = null; // "online" | "in-person" | null
+        let service = null; // "palm-reading" | "dream-analysis" | null
+        let selectedDate = null; // Date object
+        let selectedTime = null; // string
+
+        const bookingForm = document.getElementById("bookingForm");
+        const bookingFormView = document.getElementById("bookingFormView");
+        const bookingSuccessView =
+          document.getElementById("bookingSuccessView");
+
+        const appointmentTypeError = document.getElementById(
+          "appointmentTypeError"
+        );
+        const serviceError = document.getElementById("serviceError");
+        const dateTimeError = document.getElementById("dateTimeError");
+
+        const serviceSelect = document.getElementById("bookingService");
+        const calendarGrid = document.getElementById("calendarGrid");
+        const timeButtons = document.querySelectorAll(".time-slot");
+
+        const summaryType = document.getElementById("summaryType");
+        const summaryService = document.getElementById("summaryService");
+        const summaryDate = document.getElementById("summaryDate");
+        const summaryTime = document.getElementById("summaryTime");
+        const summaryAmount = document.getElementById("summaryAmount");
+
+        const successService = document.getElementById("successService");
+        const successDate = document.getElementById("successDate");
+        const successTime = document.getElementById("successTime");
+        const successAmount = document.getElementById("successAmount");
+
+        const fields = {
+          fullName: document.getElementById("fullName"),
+          email: document.getElementById("email"),
+          phone: document.getElementById("phone"),
+          gender: document.getElementById("gender"),
+          dateOfBirth: document.getElementById("dateOfBirth"),
+          placeOfBirth: document.getElementById("placeOfBirth"),
+          notes: document.getElementById("notes"),
+        };
+
+        const fieldErrors = {
+          fullName: document.getElementById("error-fullName"),
+          email: document.getElementById("error-email"),
+          phone: document.getElementById("error-phone"),
+          gender: document.getElementById("error-gender"),
+          dateOfBirth: document.getElementById("error-dateOfBirth"),
+          placeOfBirth: document.getElementById("error-placeOfBirth"),
+        };
+
+        function getTotalPrice() {
+          if (!service) return 0;
+          return prices[service] || 0;
+        }
+
+        function generateCalendarDays() {
+          const today = new Date();
+          const days = [];
+          for (let i = 0; i < 180; i++) {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+            days.push(d);
+          }
+          return days;
+        }
+
+        function formatDateForSummary(date) {
+          if (!date) return "Not selected";
+          return date.toLocaleDateString("en-IN", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+        }
+
+        function renderCalendar() {
+          const days = generateCalendarDays();
+
+          days.slice(0, 42).forEach(function (date, index) {
+            const cell = document.createElement("div");
+            const isFirstOfMonth = date.getDate() === 1 || index === 0;
+            const dayOfWeek = date.getDay();
+
+            if (isFirstOfMonth) {
+              cell.style.gridColumnStart = String(dayOfWeek + 1);
+            }
+
+            cell.textContent = String(date.getDate());
+            cell.className =
+              "booking-date aspect-square flex items-center justify-center rounded-lg cursor-pointer text-sm transition-all hover:bg-orange-100 text-orange-900";
+            cell.dataset.date = date.toISOString();
+
+            cell.addEventListener("click", function () {
+              const allCells = calendarGrid.querySelectorAll(".booking-date");
+              allCells.forEach(function (c) {
+                c.classList.remove(
+                  "bg-gradient-to-br",
+                  "from-orange-400",
+                  "to-red-400",
+                  "text-white",
+                  "shadow-md"
+                );
+              });
+
+              selectedDate = date;
+              dateTimeError && dateTimeError.classList.add("hidden");
+
+              cell.classList.add(
+                "bg-gradient-to-br",
+                "from-orange-400",
+                "to-red-400",
+                "text-white",
+                "shadow-md"
+              );
+
+              updateSummary();
+            });
+
+            calendarGrid.appendChild(cell);
+          });
+        }
+
+        function updateSummary() {
+          if (appointmentType) {
+            summaryType.textContent =
+              appointmentType === "in-person" ? "In person" : "Online";
+          } else {
+            summaryType.textContent = "Not selected";
+          }
+
+          if (service === "palm-reading") {
+            summaryService.textContent = "Palm Reading";
+          } else if (service === "dream-analysis") {
+            summaryService.textContent = "Dream Analysis";
+          } else {
+            summaryService.textContent = "Not selected";
+          }
+
+          summaryDate.textContent = formatDateForSummary(selectedDate);
+          summaryTime.textContent = selectedTime || "Not selected";
+          summaryAmount.textContent = "₹" + getTotalPrice();
+        }
+
+        function clearFieldError(key) {
+          const errEl = fieldErrors[key];
+          if (errEl) errEl.classList.add("hidden");
+        }
+
+        function validateForm() {
+          let valid = true;
+
+          if (!appointmentType) {
+            appointmentTypeError &&
+              appointmentTypeError.classList.remove("hidden");
+            valid = false;
+          } else {
+            appointmentTypeError &&
+              appointmentTypeError.classList.add("hidden");
+          }
+
+          if (!service) {
+            serviceError && serviceError.classList.remove("hidden");
+            valid = false;
+          } else {
+            serviceError && serviceError.classList.add("hidden");
+          }
+
+          if (!selectedDate || !selectedTime) {
+            dateTimeError && dateTimeError.classList.remove("hidden");
+            valid = false;
+          } else {
+            dateTimeError && dateTimeError.classList.add("hidden");
+          }
+
+          function isEmpty(el) {
+            return !el || !el.value || !el.value.trim();
+          }
+
+          const requiredKeys = [
+            "fullName",
+            "email",
+            "phone",
+            "gender",
+            "dateOfBirth",
+            "placeOfBirth",
+          ];
+
+          requiredKeys.forEach(function (key) {
+            const field = fields[key];
+            const errEl = fieldErrors[key];
+            if (isEmpty(field)) {
+              errEl && errEl.classList.remove("hidden");
+              valid = false;
+            } else {
+              errEl && errEl.classList.add("hidden");
+            }
+          });
+
+          return valid;
+        }
+
+        const typeCards = document.querySelectorAll(".booking-type-card");
+        typeCards.forEach(function (card) {
+          card.addEventListener("click", function () {
+            const type = card.getAttribute("data-appointment-type");
+            appointmentType = type;
+
+            appointmentTypeError &&
+              appointmentTypeError.classList.add("hidden");
+
+            typeCards.forEach(function (c) {
+              c.classList.remove(
+                "ring-4",
+                "ring-orange-400",
+                "shadow-xl",
+                "ring-2",
+                "ring-red-500"
+              );
+              c.classList.add("shadow-lg");
+              const checkIcon = c.querySelector(".type-check");
+              if (checkIcon) checkIcon.classList.add("hidden");
+            });
+
+            card.classList.remove("shadow-lg");
+            card.classList.add("ring-4", "ring-orange-400", "shadow-xl");
+            const checkIcon = card.querySelector(".type-check");
+            if (checkIcon) checkIcon.classList.remove("hidden");
+
+            updateSummary();
+          });
+        });
+
+        if (serviceSelect) {
+          serviceSelect.addEventListener("change", function () {
+            const value = serviceSelect.value || "";
+            service = value || null;
+            if (service) {
+              serviceError && serviceError.classList.add("hidden");
+            }
+            updateSummary();
+          });
+        }
+
+        timeButtons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const time = btn.getAttribute("data-time");
+            selectedTime = time;
+            dateTimeError && dateTimeError.classList.add("hidden");
+
+            timeButtons.forEach(function (b) {
+              b.classList.remove(
+                "bg-gradient-to-r",
+                "from-orange-400",
+                "to-red-400",
+                "text-white",
+                "shadow-md"
+              );
+              b.classList.add("bg-orange-100", "text-orange-900");
+            });
+
+            btn.classList.remove("bg-orange-100", "text-orange-900");
+            btn.classList.add(
+              "bg-gradient-to-r",
+              "from-orange-400",
+              "to-red-400",
+              "text-white",
+              "shadow-md"
+            );
+
+            updateSummary();
+          });
+        });
+
+        if (bookingForm) {
+          bookingForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!validateForm()) return;
+
+            const emailBody =
+              "New Booking Request - ShubhRekha Palmistry\n\n" +
+              "Consultation Type: " +
+              (appointmentType ? appointmentType.toUpperCase() : "") +
+              "\n" +
+              "Service: " +
+              (service === "palm-reading"
+                ? "Palm Reading"
+                : service === "dream-analysis"
+                ? "Dream Analysis"
+                : "") +
+              "\n" +
+              "Date: " +
+              formatDateForSummary(selectedDate) +
+              "\n" +
+              "Time: " +
+              (selectedTime || "") +
+              "\n" +
+              "Duration: 30-45 minutes\n" +
+              "Price: ₹" +
+              getTotalPrice() +
+              "\n\n" +
+              "Client Information:\n" +
+              "Full Name: " +
+              (fields.fullName.value || "") +
+              "\n" +
+              "Email: " +
+              (fields.email.value || "") +
+              "\n" +
+              "Phone: " +
+              (fields.phone.value || "") +
+              "\n" +
+              "Gender: " +
+              (fields.gender.value || "") +
+              "\n" +
+              "Date of Birth: " +
+              (fields.dateOfBirth.value || "") +
+              "\n" +
+              "Place of Birth: " +
+              (fields.placeOfBirth.value || "") +
+              "\n\n" +
+              "Additional Notes:\n" +
+              (fields.notes.value || "None");
+
+            console.log("Email would be sent to: mohit.cs.garg@gmail.com");
+            console.log("Email content:\n" + emailBody);
+
+            successService.textContent =
+              service === "palm-reading"
+                ? "Palm Reading"
+                : service === "dream-analysis"
+                ? "Dream Analysis"
+                : "";
+            successDate.textContent = selectedDate
+              ? selectedDate.toLocaleDateString("en-IN")
+              : "";
+            successTime.textContent = selectedTime || "";
+            successAmount.textContent = "₹" + getTotalPrice();
+
+            bookingFormView.classList.add("hidden");
+            bookingSuccessView.classList.remove("hidden");
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        function clearFieldError(key) {
+          const errEl = fieldErrors[key];
+          if (errEl) errEl.classList.add("hidden");
+        }
+
+        Object.keys(fields).forEach(function (key) {
+          const el = fields[key];
+          if (!el) return;
+          el.addEventListener("input", function () {
+            clearFieldError(key);
+          });
+          if (key === "gender") {
+            el.addEventListener("change", function () {
+              clearFieldError(key);
+            });
+          }
+        });
+
+        renderCalendar();
+      });
+    </script>
+  </body>
+</html>

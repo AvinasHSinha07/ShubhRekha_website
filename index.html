@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ShubhRekha</title>
+
+    <!-- Tailwind CSS via CDN (you can replace with your own build pipeline) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-b from-orange-50 via-amber-50 to-orange-50"
+  >
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-200/50 shadow-sm"
+    >
+      <div class="container mx-auto px-4">
+        <!-- Mobile Layout -->
+        <div class="lg:hidden py-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center"
+              >
+                <i data-lucide="hand" class="w-5 h-5 text-white"></i>
+              </div>
+              <span class="text-orange-900">ShubhRekha</span>
+            </div>
+            <button
+              data-book-click
+              class="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full hover:from-orange-700 hover:to-red-700 transition-all text-sm shadow-md"
+            >
+              Book a Reading
+            </button>
+          </div>
+        </div>
+
+        <!-- Desktop Layout -->
+        <div class="hidden lg:flex items-center justify-between py-3">
+          <!-- Logo -->
+          <div class="flex items-center gap-2">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center"
+            >
+              <i data-lucide="hand" class="w-6 h-6 text-white"></i>
+            </div>
+            <span class="text-xl text-orange-900">ShubhRekha</span>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="flex items-center gap-6">
+            <a
+              href="tel:+919876543210"
+              class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            >
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i data-lucide="phone" class="w-5 h-5 text-white"></i>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-orange-600">Call us</span>
+                <span class="text-sm text-orange-900">+91 98765 43210</span>
+              </div>
+            </a>
+
+            <a
+              href="mailto:info@shubhrekha.in"
+              class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            >
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i data-lucide="mail" class="w-5 h-5 text-white"></i>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-orange-600">Email us</span>
+                <span class="text-sm text-orange-900">info@shubhrekha.in</span>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i data-lucide="map-pin" class="w-5 h-5 text-white"></i>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-xs text-orange-600">Visit us</span>
+                <span class="text-sm text-orange-900">Mumbai, Maharashtra</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <button
+            data-book-click
+            class="px-6 py-2.5 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full hover:from-orange-700 hover:to-red-700 transition-all shadow-md"
+          >
+            <a
+              href="booking.html"
+              class="px-6 py-2.5 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-full hover:from-orange-700 hover:to-red-700 transition-all shadow-md"
+            >
+              Book a Reading
+            </a>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <section
+      class="relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-400 to-pink-500 text-white pt-16 lg:pt-16"
+    >
+      <!-- Decorative pattern overlay -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute inset-0"
+          style="
+            background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+          "
+        ></div>
+      </div>
+
+      <div class="relative container mx-auto px-4 py-8 lg:py-10">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        >
+          <!-- Left Column - Text Content -->
+          <div class="space-y-6 lg:space-y-8">
+            <!-- Main heading -->
+            <div>
+              <span class="block text-yellow-300 text-sm tracking-widest mb-3"
+                >॥ OM ॥</span
+              >
+              <h1 class="mb-6 text-4xl sm:text-5xl lg:text-6xl leading-tight">
+                Discover Guidance Through Ancient Vedic Wisdom
+              </h1>
+
+              <p class="text-orange-50 text-lg max-w-xl">
+                For over 20 years, Mr. Umesh Garg has helped individuals
+                understand their life path through authentic Palm Reading and
+                Dream Analysis rooted in Hindu tradition. Find clarity,
+                direction, and deeper meaning.
+              </p>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="pt-2 flex justify-start lg:justify-start">
+              <button
+                data-book-click
+                class="w-full sm:w-auto px-8 py-4 bg-yellow-400 text-orange-900 rounded-full hover:bg-yellow-300 transition-colors shadow-lg"
+              >
+                Book a Reading
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column - Hero Image -->
+          <div class="relative">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+              <!-- Replace hero-image.png with your actual image path -->
+              <img
+                src="assets/ec8c3eb8a25dc2dbef659d0ad9930d6b82300566.png"
+                alt="Palm reading expert"
+                class="w-full h-auto object-cover"
+                style="image-rendering: crisp-edges"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom wave -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full"
+        >
+          <path
+            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+            fill="#fff7ed"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <section
+      class="py-16 px-4 bg-gradient-to-br from-orange-50 via-pink-50 to-red-50"
+    >
+      <div class="container mx-auto max-w-6xl">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <div
+            class="inline-block px-4 py-1 bg-orange-300 text-orange-900 rounded-full text-sm mb-4"
+          >
+            Our Services
+          </div>
+          <h2 class="text-orange-900 mb-4 text-3xl sm:text-4xl lg:text-5xl">
+            Sacred Guidance Services
+          </h2>
+          <p class="text-orange-800 max-w-2xl mx-auto">
+            Discover your divine path through authentic Vedic practices
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- PALM READING -->
+          <div
+            class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center flex-shrink-0"
+              >
+                <i data-lucide="hand" class="w-8 h-8 text-white"></i>
+              </div>
+              <h3 class="text-orange-900 text-2xl">Palm Reading</h3>
+            </div>
+
+            <p class="text-orange-800 mb-6 leading-relaxed">
+              Unlock the mysteries written in your hands through authentic Vedic
+              palmistry. Each line reveals your past, present, and future as
+              ordained by divine will. Mr. Umesh Garg interprets the sacred
+              messages in your palms to provide guidance on career,
+              relationships, health, and spiritual growth.
+            </p>
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Complete life line analysis</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Career and financial guidance</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Relationship compatibility insights</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Health and vitality assessment</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Personalized remedial suggestions</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- DREAM ANALYSIS -->
+          <div
+            class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl flex items-center justify-center flex-shrink-0"
+              >
+                <i data-lucide="moon" class="w-8 h-8 text-white"></i>
+              </div>
+              <h3 class="text-orange-900 text-2xl">Dream Analysis</h3>
+            </div>
+
+            <p class="text-orange-800 mb-6 leading-relaxed">
+              Dreams are divine messages from the subconscious realm, reflecting
+              your karma and future possibilities. Through ancient Hindu dream
+              interpretation techniques, discover the spiritual meanings behind
+              your visions and receive guidance on life's important decisions.
+            </p>
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >In-depth dream symbolism interpretation</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Karmic pattern recognition</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Future predictions and warnings</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Spiritual guidance from dream messages</span
+                >
+              </div>
+              <div class="flex items-start gap-2">
+                <i
+                  data-lucide="check-circle"
+                  class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
+                ></i>
+                <span class="text-orange-800 text-sm"
+                  >Remedial measures for recurring dreams</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-16 px-4 bg-gradient-to-br from-pink-50 via-orange-50 to-red-50"
+    >
+      <div class="container mx-auto max-w-6xl">
+        <!-- Main About Section - Palmistry -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <div
+              class="inline-block px-4 py-1 bg-orange-300 text-orange-900 rounded-full text-sm mb-4"
+            >
+              Ancient Science
+            </div>
+            <h2 class="text-orange-900 mb-6 text-3xl sm:text-4xl lg:text-5xl">
+              The Sacred Art of Palmistry
+            </h2>
+            <div class="space-y-4 text-orange-900">
+              <p>
+                Palmistry, known as
+                <span class="text-red-500">Hasta Samudrika Shastra</span> in
+                Sanskrit, is an ancient Vedic science that has been practiced in
+                India for over 5,000 years.
+              </p>
+              <p>
+                Your hands are a map of your soul's journey. Each line, mount,
+                and finger reveals the intricate story of your past, present,
+                and future written by the cosmic forces at the time of your
+                birth.
+              </p>
+              <p>
+                Through traditional Hindu palmistry, we decode these divine
+                messages to help you understand your karma, dharma, and life's
+                purpose.
+              </p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="sun" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">5000+ Years Old</span>
+              </div>
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="book-open" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">Vedic Tradition</span>
+              </div>
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="moon" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">Spiritual Guidance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute -inset-4 bg-gradient-to-br from-orange-300 to-pink-300 rounded-3xl transform rotate-3"
+            ></div>
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="https://images.unsplash.com/photo-1611934180042-da791b4091e7?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBzcGlyaXR1YWwlMjBtZWRpdGF0aW9ufGVufDF8fHx8MTc2MzcyMzAwMnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"
+                alt="Indian spiritual meditation"
+                class="w-full h-80 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Palm Lines Section -->
+        <div
+          class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-3xl p-8 md:p-12 mb-16"
+        >
+          <div class="text-center mb-10">
+            <h3 class="text-orange-900 mb-3 text-2xl sm:text-3xl lg:text-4xl">
+              Major Palm Lines
+            </h3>
+            <p class="text-orange-700">
+              Understanding the four primary lines in Vedic palmistry
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Heart Line -->
+            <div
+              class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">💗</div>
+                <div class="flex-1">
+                  <h4 class="text-orange-900 mb-2">Heart Line</h4>
+                  <p class="text-orange-700 text-sm">
+                    The Heart Line reveals your emotional nature, capacity for
+                    love, and relationship patterns. It shows how you give and
+                    receive affection and your romantic tendencies.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Head Line -->
+            <div
+              class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">🧠</div>
+                <div class="flex-1">
+                  <h4 class="text-orange-900 mb-2">Head Line</h4>
+                  <p class="text-orange-700 text-sm">
+                    The Head Line represents your mental capabilities,
+                    intellectual pursuits, and decision-making wisdom. It
+                    reflects your thinking patterns and creativity.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Life Line -->
+            <div
+              class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">🌟</div>
+                <div class="flex-1">
+                  <h4 class="text-orange-900 mb-2">Life Line</h4>
+                  <p class="text-orange-700 text-sm">
+                    The Life Line indicates your vitality, physical health, and
+                    major life transitions. It reveals your life force energy
+                    and overall well-being throughout your journey.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fate Line -->
+            <div
+              class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">✨</div>
+                <div class="flex-1">
+                  <h4 class="text-orange-900 mb-2">Fate Line</h4>
+                  <p class="text-orange-700 text-sm">
+                    The Fate Line represents your career trajectory, life
+                    purpose, and destiny path. It shows how divine will shapes
+                    your professional journey and life direction.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dream Analysis Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="relative order-2 lg:order-1">
+            <div
+              class="absolute -inset-4 bg-gradient-to-br from-pink-300 to-red-300 rounded-3xl transform -rotate-3"
+            ></div>
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="https://images.unsplash.com/photo-1650697807213-c61f7be60835?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkcmVhbSUyMHNsZWVwJTIwc3Bpcml0dWFsfGVufDF8fHx8MTc2Mzg3NTkwMnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080&amp;utm_source=figma&amp;utm_medium=referral"
+                alt="Dream analysis and spiritual guidance"
+                class="w-full h-80 object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2">
+            <div
+              class="inline-block px-4 py-1 bg-orange-300 text-orange-900 rounded-full text-sm mb-4"
+            >
+              Ancient Science
+            </div>
+            <h2 class="text-orange-900 mb-6 text-3xl sm:text-4xl lg:text-5xl">
+              The Ancient Science of Dream Interpretation
+            </h2>
+            <div class="space-y-4 text-orange-900">
+              <p>
+                Dream analysis, known as
+                <span class="text-red-500">Swapna Shastra</span> in Sanskrit, is
+                a sacred Hindu practice that interprets the symbolic messages
+                from the divine realm received during sleep.
+              </p>
+              <p>
+                Dreams are not random — they are cosmic communications revealing
+                your subconscious fears, desires, and future possibilities. Each
+                symbol carries spiritual significance rooted in ancient Vedic
+                wisdom.
+              </p>
+              <p>
+                Through traditional dream interpretation, we unveil the hidden
+                meanings behind your visions, helping you understand karmic
+                patterns and receive divine guidance for important life
+                decisions.
+              </p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="moon" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">Divine Messages</span>
+              </div>
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="sparkles" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">Karmic Insights</span>
+              </div>
+              <div
+                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm"
+              >
+                <i data-lucide="book-open" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-orange-900 text-sm">Vedic Wisdom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-16 px-4 bg-gradient-to-br from-pink-100 via-orange-100 to-red-100"
+    >
+      <div class="container mx-auto max-w-6xl">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <div
+            class="inline-block px-4 py-1 bg-orange-300 text-orange-900 rounded-full text-sm mb-4"
+          >
+            Testimonials
+          </div>
+          <h2 class="text-orange-900 mb-4 text-3xl sm:text-4xl lg:text-5xl">
+            What Our Clients Say
+          </h2>
+          <p class="text-orange-800 max-w-2xl mx-auto">
+            Thousands have found clarity and guidance through our palm readings
+          </p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Testimonial 1 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative"
+          >
+            <div class="absolute top-4 right-4 text-orange-200">
+              <i data-lucide="quote" class="w-8 h-8"></i>
+            </div>
+
+            <div class="flex gap-1 mb-4">
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+            </div>
+
+            <p class="text-orange-800 mb-6 italic">
+              "The palm reading was incredibly accurate! It helped me understand
+              my career path and I made decisions that transformed my life.
+              Truly blessed to have found this service."
+            </p>
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-orange-100"
+            >
+              <div>
+                <div class="text-orange-900">Priya Sharma</div>
+                <div class="text-orange-600 text-sm">Mumbai</div>
+              </div>
+              <div class="text-orange-500 text-xs">2 weeks ago</div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative"
+          >
+            <div class="absolute top-4 right-4 text-orange-200">
+              <i data-lucide="quote" class="w-8 h-8"></i>
+            </div>
+
+            <div class="flex gap-1 mb-4">
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+            </div>
+
+            <p class="text-orange-800 mb-6 italic">
+              "Amazing experience! The palmist's knowledge of Vedic astrology
+              and palmistry is profound. The insights about my relationships
+              were spot-on."
+            </p>
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-orange-100"
+            >
+              <div>
+                <div class="text-orange-900">Rajesh Kumar</div>
+                <div class="text-orange-600 text-sm">Delhi</div>
+              </div>
+              <div class="text-orange-500 text-xs">1 month ago</div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative"
+          >
+            <div class="absolute top-4 right-4 text-orange-200">
+              <i data-lucide="quote" class="w-8 h-8"></i>
+            </div>
+
+            <div class="flex gap-1 mb-4">
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+            </div>
+
+            <p class="text-orange-800 mb-6 italic">
+              "I was skeptical at first, but the reading revealed things about
+              my personality and future that resonated deeply. Very professional
+              and authentic."
+            </p>
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-orange-100"
+            >
+              <div>
+                <div class="text-orange-900">Ananya Patel</div>
+                <div class="text-orange-600 text-sm">Bangalore</div>
+              </div>
+              <div class="text-orange-500 text-xs">3 weeks ago</div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative"
+          >
+            <div class="absolute top-4 right-4 text-orange-200">
+              <i data-lucide="quote" class="w-8 h-8"></i>
+            </div>
+
+            <div class="flex gap-1 mb-4">
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+              <i
+                data-lucide="star"
+                class="w-4 h-4 fill-yellow-400 text-yellow-400"
+              ></i>
+            </div>
+
+            <p class="text-orange-800 mb-6 italic">
+              "The guidance I received helped me make important life decisions.
+              The palmist explained everything clearly and with great spiritual
+              wisdom."
+            </p>
+
+            <div
+              class="flex items-center justify-between pt-4 border-t border-orange-100"
+            >
+              <div>
+                <div class="text-orange-900">Vikram Singh</div>
+                <div class="text-orange-600 text-sm">Jaipur</div>
+              </div>
+              <div class="text-orange-500 text-xs">1 week ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-16 px-4 bg-gradient-to-br from-orange-50 via-pink-50 to-red-50"
+    >
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-12">
+          <div
+            class="inline-block px-4 py-1 bg-orange-300 text-orange-900 rounded-full text-sm mb-4"
+          >
+            Get in Touch
+          </div>
+          <h2 class="text-orange-900 mb-4 text-3xl sm:text-4xl lg:text-5xl">
+            Contact Us
+          </h2>
+          <p class="text-orange-800 max-w-2xl mx-auto">
+            Have a question or need guidance? Reach out to us and we'll get back
+            to you soon.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Contact Form -->
+          <div class="bg-white rounded-3xl p-8 shadow-lg">
+            <h3 class="text-orange-900 mb-6 text-2xl">Send us a Message</h3>
+
+            <form class="space-y-4">
+              <div>
+                <label for="name" class="block text-orange-900 mb-2 text-sm">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                  placeholder="Enter your name"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-orange-900 mb-2 text-sm">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-orange-900 mb-2 text-sm">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label for="service" class="block text-orange-900 mb-2 text-sm">
+                  Select Service *
+                </label>
+                <select
+                  id="service"
+                  class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors bg-white"
+                >
+                  <option>Palm Reading</option>
+                  <option>Dream Analysis</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="message" class="block text-orange-900 mb-2 text-sm">
+                  Message (Optional)
+                </label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  class="w-full px-4 py-3 border-2 border-orange-300 rounded-lg focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                  placeholder="Any specific questions or concerns..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full py-4 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-lg hover:from-orange-500 hover:to-red-500 transition-all shadow-lg flex items-center justify-center gap-2"
+              >
+                <i data-lucide="send" class="w-5 h-5"></i>
+                <span>Submit Form</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white rounded-3xl p-8 shadow-lg">
+            <h3 class="mb-6 text-2xl text-orange-900">Contact Information</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="phone" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                  <div class="text-orange-800 text-sm mb-1">Phone</div>
+                  <div class="text-orange-900">+91 98765 43210</div>
+                  <div class="text-sm text-orange-700">
+                    Available 9 AM - 8 PM
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                  <div class="text-orange-800 text-sm mb-1">Email</div>
+                  <div class="text-orange-900">info@palmistry.in</div>
+                  <div class="text-sm text-orange-700">
+                    We reply within 24 hours
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                  <div class="text-orange-800 text-sm mb-1">Location</div>
+                  <div class="text-orange-900">123 Temple Road</div>
+                  <div class="text-sm text-orange-700">
+                    Mumbai, Maharashtra 400001
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                  <div class="text-orange-800 text-sm mb-1">Working Hours</div>
+                  <div class="text-orange-900">Monday - Saturday</div>
+                  <div class="text-sm text-orange-700">9:00 AM - 8:00 PM</div>
+                  <div class="text-sm text-orange-700 mt-1">
+                    Sunday: By Appointment
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gradient-to-br from-orange-500 to-red-500 text-white">
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <!-- Brand -->
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center"
+              >
+                <i data-lucide="hand" class="w-6 h-6 text-orange-900"></i>
+              </div>
+              <span class="text-xl text-yellow-200">ShubhRekha</span>
+            </div>
+            <p class="text-orange-50 text-sm mb-4">
+              Ancient Vedic palmistry to guide your life's journey. Discover
+              your destiny written in your hands.
+            </p>
+            <div class="text-yellow-200 text-sm">॥ OM NAMAH SHIVAYA ॥</div>
+          </div>
+
+          <!-- Connect -->
+          <div>
+            <h4 class="text-yellow-200 mb-4">Connect With Us</h4>
+            <div class="flex gap-3 mb-6">
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-orange-900 transition-colors"
+              >
+                <i data-lucide="facebook" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-orange-900 transition-colors"
+              >
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-orange-900 transition-colors"
+              >
+                <i data-lucide="twitter" class="w-5 h-5"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-orange-900 transition-colors"
+              >
+                <i data-lucide="youtube" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <div class="text-sm text-orange-50">
+              <p>
+                Subscribe to our newsletter for spiritual guidance and updates
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="border-t border-orange-400 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-orange-50"
+        >
+          <div>© 2025 ShubhRekha Palmistry. All rights reserved.</div>
+          <div class="flex gap-6">
+            <button
+              type="button"
+              data-privacy-open
+              class="hover:text-yellow-200 transition-colors"
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              data-terms-open
+              class="hover:text-yellow-200 transition-colors"
+            >
+              Terms of Service
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div
+      id="privacyModal"
+      class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-2xl max-h-[80vh] overflow-y-auto p-8"
+        onclick="event.stopPropagation()"
+      >
+        <h2 class="text-orange-900 mb-6 text-3xl">Privacy Policy</h2>
+        <div class="space-y-4 text-orange-800">
+          <p><strong>Last Updated:</strong> November 2025</p>
+
+          <h3 class="text-orange-900 text-xl mt-6">
+            1. Information We Collect
+          </h3>
+          <p>
+            We collect personal information that you provide to us when booking
+            a consultation, including your name, email address, phone number,
+            date of birth, place of birth, and any other information you choose
+            to provide.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">
+            2. How We Use Your Information
+          </h3>
+          <p>
+            We use your information to provide palmistry and dream analysis
+            services, schedule appointments, communicate with you about your
+            consultations, and improve our services. We may also use your
+            information to send you updates and spiritual guidance newsletters
+            if you have opted in.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">3. Data Security</h3>
+          <p>
+            We implement appropriate security measures to protect your personal
+            information. However, no method of transmission over the internet is
+            100% secure. We strive to use commercially acceptable means to
+            protect your data.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">
+            4. Sharing Your Information
+          </h3>
+          <p>
+            We do not sell, trade, or rent your personal information to third
+            parties. We may share your information with trusted service
+            providers who assist us in operating our website and conducting our
+            business, subject to confidentiality agreements.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">5. Your Rights</h3>
+          <p>
+            You have the right to access, correct, or delete your personal
+            information. You can contact us at any time to exercise these
+            rights.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">6. Contact Us</h3>
+          <p>
+            If you have any questions about this Privacy Policy, please contact
+            us at info@shubhrekha.in or call +91 98765 43210.
+          </p>
+        </div>
+        <button
+          type="button"
+          data-privacy-close
+          class="mt-8 w-full py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-lg hover:from-orange-500 hover:to-red-500 transition-all"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div
+      id="termsModal"
+      class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-2xl max-h-[80vh] overflow-y-auto p-8"
+        onclick="event.stopPropagation()"
+      >
+        <h2 class="text-orange-900 mb-6 text-3xl">Terms of Service</h2>
+        <div class="space-y-4 text-orange-800">
+          <p><strong>Last Updated:</strong> November 2025</p>
+
+          <h3 class="text-orange-900 text-xl mt-6">1. Acceptance of Terms</h3>
+          <p>
+            By accessing and using ShubhRekha's services, you accept and agree
+            to be bound by these Terms of Service. If you do not agree to these
+            terms, please do not use our services.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">2. Services Description</h3>
+          <p>
+            ShubhRekha provides palmistry and dream analysis consultations based
+            on ancient Vedic practices. Our services are intended for guidance
+            and spiritual insight purposes only and should not be considered as
+            medical, legal, or financial advice.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">3. Booking and Payment</h3>
+          <p>
+            All bookings must be made through our official website or by
+            contacting us directly. Payment is required at the time of booking.
+            Prices are in Indian Rupees (INR) and are subject to change without
+            prior notice.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">4. Cancellation Policy</h3>
+          <p>
+            Cancellations made at least 24 hours before the scheduled
+            appointment are eligible for a full refund. Cancellations made less
+            than 24 hours before the appointment may incur a cancellation fee.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">5. Disclaimer</h3>
+          <p>
+            Palmistry and dream analysis services are provided for spiritual
+            guidance and entertainment purposes. Results and interpretations may
+            vary and are not guaranteed. You acknowledge that you are solely
+            responsible for any decisions you make based on our consultations.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">6. Intellectual Property</h3>
+          <p>
+            All content on our website, including text, graphics, logos, and
+            images, is the property of ShubhRekha and is protected by copyright
+            laws.
+          </p>
+
+          <h3 class="text-orange-900 text-xl mt-6">7. Contact Information</h3>
+          <p>
+            For questions about these Terms of Service, please contact us at
+            info@shubhrekha.in or call +91 98765 43210.
+          </p>
+        </div>
+        <button
+          type="button"
+          data-terms-close
+          class="mt-8 w-full py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-lg hover:from-orange-500 hover:to-red-500 transition-all"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const privacyModal = document.getElementById("privacyModal");
+        const termsModal = document.getElementById("termsModal");
+
+        const privacyOpenBtn = document.querySelector("[data-privacy-open]");
+        const termsOpenBtn = document.querySelector("[data-terms-open]");
+
+        const privacyCloseBtns = document.querySelectorAll(
+          "[data-privacy-close]"
+        );
+        const termsCloseBtns = document.querySelectorAll("[data-terms-close]");
+
+        function openModal(modal) {
+          if (modal) modal.classList.remove("hidden");
+        }
+
+        function closeModal(modal) {
+          if (modal) modal.classList.add("hidden");
+        }
+
+        if (privacyOpenBtn) {
+          privacyOpenBtn.addEventListener("click", function () {
+            openModal(privacyModal);
+          });
+        }
+
+        if (termsOpenBtn) {
+          termsOpenBtn.addEventListener("click", function () {
+            openModal(termsModal);
+          });
+        }
+
+        privacyCloseBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            closeModal(privacyModal);
+          });
+        });
+
+        termsCloseBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            closeModal(termsModal);
+          });
+        });
+
+        // Close when clicking on backdrop
+        if (privacyModal) {
+          privacyModal.addEventListener("click", function () {
+            closeModal(privacyModal);
+          });
+        }
+        if (termsModal) {
+          termsModal.addEventListener("click", function () {
+            closeModal(termsModal);
+          });
+        }
+      });
+    </script>
+
+    <!-- APP LOGIC -->
+    <script src="app.js"></script>
+  </body>
+</html>
