@@ -570,12 +570,12 @@
           "dream-analysis": 1500,
         };
 
-        let appointmentType = null; // "online" | "in-person" | null
-        let service = null; // "palm-reading" | "dream-analysis" | null
-        let selectedDate = null; // Date object
-        let selectedTime = null; // string
+        let appointmentType = null; 
+        let service = null; 
+        let selectedDate = null; 
+        let selectedTime = null; 
 
-        // Hidden Inputs References (For Netlify)
+       
         const hiddenType = document.getElementById("hiddenType");
         const hiddenDate = document.getElementById("hiddenDate");
         const hiddenTime = document.getElementById("hiddenTime");
@@ -701,11 +701,11 @@
         }
 
         function updateSummary() {
-          // Update Logic & Fill Hidden Inputs
+          
           if (appointmentType) {
             summaryType.textContent =
               appointmentType === "in-person" ? "In person" : "Online";
-            hiddenType.value = appointmentType; // Save to hidden input
+            hiddenType.value = appointmentType; 
           } else {
             summaryType.textContent = "Not selected";
             hiddenType.value = "";
@@ -721,7 +721,7 @@
 
           if (selectedDate) {
             summaryDate.textContent = formatDateForSummary(selectedDate);
-            hiddenDate.value = selectedDate.toDateString(); // Save to hidden input
+            hiddenDate.value = selectedDate.toDateString(); 
           } else {
             summaryDate.textContent = "Not selected";
             hiddenDate.value = "";
@@ -729,7 +729,7 @@
 
           if (selectedTime) {
             summaryTime.textContent = selectedTime;
-            hiddenTime.value = selectedTime; // Save to hidden input
+            hiddenTime.value = selectedTime; 
           } else {
             summaryTime.textContent = "Not selected";
             hiddenTime.value = "";
@@ -737,7 +737,7 @@
 
           const price = getTotalPrice();
           summaryAmount.textContent = "₹" + price;
-          hiddenPrice.value = price; // Save to hidden input
+          hiddenPrice.value = price; 
         }
 
         function clearFieldError(key) {
@@ -879,7 +879,7 @@
               return;
             }
 
-            // --- NETLIFY AJAX SUBMISSION ---
+            
             const myFormData = new FormData(bookingForm);
 
             fetch("/", {
@@ -890,7 +890,7 @@
               body: new URLSearchParams(myFormData).toString(),
             })
               .then(() => {
-                // Success Logic
+               
                 successService.textContent =
                   service === "palm-reading"
                     ? "Palm Reading"
