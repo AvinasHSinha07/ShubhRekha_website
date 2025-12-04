@@ -8,6 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
   <body
     class="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-red-50"
@@ -576,7 +581,6 @@
         let selectedDate = null;
         let selectedTime = null;
 
-        // Month navigation state: current month + next 2 months
         let currentMonthOffset = 0;
         const maxMonthOffset = 2;
 
@@ -718,7 +722,6 @@
           const firstDayOfWeek = monthStart.getDay();
           const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-          // Empty cells before the 1st of the month
           for (let i = 0; i < firstDayOfWeek; i++) {
             const blank = document.createElement("div");
             blank.className = "py-2";
