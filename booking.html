@@ -88,7 +88,6 @@
       </section>
 
       <form id="bookingForm" name="booking" method="POST" data-netlify="true">
-        
         <input type="hidden" name="form-name" value="booking" />
 
         <input type="hidden" name="appointmentType" id="hiddenType" />
@@ -223,36 +222,38 @@
               <div id="calendarCard" class="bg-white rounded-3xl p-8 shadow-lg">
                 <div class="flex items-center justify-between mb-6">
                   <h3 class="text-orange-900 text-xl">Choose a Date</h3>
-                  <i data-lucide="calendar" class="w-6 h-6 text-orange-500"></i>
+                  <div class="flex items-center gap-3">
+                    <button
+                      type="button"
+                      id="prevMonth"
+                      class="p-1 rounded-full hover:bg-orange-100 text-orange-500"
+                      aria-label="Previous month"
+                    >
+                      <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <span
+                      id="calendarMonthLabel"
+                      class="text-sm font-medium text-orange-900"
+                    ></span>
+                    <button
+                      type="button"
+                      id="nextMonth"
+                      class="p-1 rounded-full hover:bg-orange-100 text-orange-500"
+                      aria-label="Next month"
+                    >
+                      <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                    <i
+                      data-lucide="calendar"
+                      class="w-6 h-6 text-orange-500"
+                    ></i>
+                  </div>
                 </div>
 
-                <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-sm">
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Sun
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Mon
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Tue
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Wed
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Thu
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Fri
-                  </div>
-                  <div class="text-center text-xs text-orange-600 py-2">
-                    Sat
-                  </div>
-                  </div>
-
-                <div class="text-center text-xs text-orange-600 mt-4">
-                  Showing next 6 months available
-                </div>
+                <div
+                  id="calendarGrid"
+                  class="grid grid-cols-7 gap-2 text-sm"
+                ></div>
               </div>
 
               <div id="timeCard" class="bg-white rounded-3xl p-8 shadow-lg">
@@ -570,12 +571,15 @@
           "dream-analysis": 1500,
         };
 
-        let appointmentType = null; 
-        let service = null; 
-        let selectedDate = null; 
-        let selectedTime = null; 
+        let appointmentType = null;
+        let service = null;
+        let selectedDate = null;
+        let selectedTime = null;
 
-       
+        // Month navigation state: current month + next 2 months
+        let currentMonthOffset = 0;
+        const maxMonthOffset = 2;
+
         const hiddenType = document.getElementById("hiddenType");
         const hiddenDate = document.getElementById("hiddenDate");
         const hiddenTime = document.getElementById("hiddenTime");
@@ -595,6 +599,11 @@
         const serviceSelect = document.getElementById("bookingService");
         const calendarGrid = document.getElementById("calendarGrid");
         const timeButtons = document.querySelectorAll(".time-slot");
+
+        const prevMonthBtn = document.getElementById("prevMonth");
+        const nextMonthBtn = document.getElementById("nextMonth");
+        const calendarMonthLabel =
+          document.getElementById("calendarMonthLabel");
 
         const summaryType = document.getElementById("summaryType");
         const summaryService = document.getElementById("summaryService");
@@ -631,15 +640,12 @@
           return prices[service] || 0;
         }
 
-        function generateCalendarDays() {
-          const today = new Date();
-          const days = [];
-          for (let i = 0; i < 180; i++) {
-            const d = new Date(today);
-            d.setDate(today.getDate() + i);
-            days.push(d);
-          }
-          return days;
+        function getMonthStart(offset) {
+          const d = new Date();
+          d.setDate(1);
+          d.setMonth(d.getMonth() + offset);
+          d.setHours(0, 0, 0, 0);
+          return d;
         }
 
         function formatDateForSummary(date) {
@@ -652,60 +658,142 @@
           });
         }
 
+        function updateMonthNavButtons() {
+          if (!prevMonthBtn || !nextMonthBtn) return;
+
+          prevMonthBtn.disabled = currentMonthOffset === 0;
+          nextMonthBtn.disabled = currentMonthOffset === maxMonthOffset;
+
+          prevMonthBtn.classList.toggle("opacity-40", prevMonthBtn.disabled);
+          prevMonthBtn.classList.toggle(
+            "cursor-not-allowed",
+            prevMonthBtn.disabled
+          );
+
+          nextMonthBtn.classList.toggle("opacity-40", nextMonthBtn.disabled);
+          nextMonthBtn.classList.toggle(
+            "cursor-not-allowed",
+            nextMonthBtn.disabled
+          );
+        }
+
         function renderCalendar() {
-          const days = generateCalendarDays();
+          if (!calendarGrid) return;
 
-          days.slice(0, 42).forEach(function (date, index) {
+          calendarGrid.innerHTML = "";
+
+          const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+          weekdays.forEach(function (dayName) {
+            const headerCell = document.createElement("div");
+            headerCell.className = "text-center text-xs text-orange-600 py-2";
+            headerCell.textContent = dayName;
+            calendarGrid.appendChild(headerCell);
+          });
+
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          const monthStart = getMonthStart(currentMonthOffset);
+          const month = monthStart.getMonth();
+          const year = monthStart.getFullYear();
+
+          if (calendarMonthLabel) {
+            const monthNames = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            calendarMonthLabel.textContent = monthNames[month] + " " + year;
+          }
+
+          const firstDayOfWeek = monthStart.getDay();
+          const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+          // Empty cells before the 1st of the month
+          for (let i = 0; i < firstDayOfWeek; i++) {
+            const blank = document.createElement("div");
+            blank.className = "py-2";
+            calendarGrid.appendChild(blank);
+          }
+
+          for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            date.setHours(0, 0, 0, 0);
+
+            const isPast = date < today;
             const cell = document.createElement("div");
-            const isFirstOfMonth = date.getDate() === 1 || index === 0;
-            const dayOfWeek = date.getDay();
+            cell.textContent = String(day);
 
-            if (isFirstOfMonth) {
-              cell.style.gridColumnStart = String(dayOfWeek + 1);
-            }
+            if (isPast) {
+              cell.className =
+                "aspect-square flex items-center justify-center rounded-lg text-xs text-orange-300 bg-orange-50 cursor-not-allowed";
+            } else {
+              cell.className =
+                "booking-date aspect-square flex items-center justify-center rounded-lg cursor-pointer text-sm transition-all hover:bg-orange-100 text-orange-900";
+              cell.dataset.date = date.toISOString();
 
-            cell.textContent = String(date.getDate());
-            cell.className =
-              "booking-date aspect-square flex items-center justify-center rounded-lg cursor-pointer text-sm transition-all hover:bg-orange-100 text-orange-900";
-            cell.dataset.date = date.toISOString();
-
-            cell.addEventListener("click", function () {
-              const allCells =
-                calendarGrid.querySelectorAll(".booking-date");
-              allCells.forEach(function (c) {
-                c.classList.remove(
+              if (
+                selectedDate &&
+                date.toDateString() === selectedDate.toDateString()
+              ) {
+                cell.classList.add(
                   "bg-gradient-to-br",
                   "from-orange-400",
                   "to-red-400",
                   "text-white",
                   "shadow-md"
                 );
+              }
+
+              cell.addEventListener("click", function () {
+                const allCells = calendarGrid.querySelectorAll(".booking-date");
+                allCells.forEach(function (c) {
+                  c.classList.remove(
+                    "bg-gradient-to-br",
+                    "from-orange-400",
+                    "to-red-400",
+                    "text-white",
+                    "shadow-md"
+                  );
+                });
+
+                selectedDate = date;
+                if (dateTimeError) {
+                  dateTimeError.classList.add("hidden");
+                }
+
+                cell.classList.add(
+                  "bg-gradient-to-br",
+                  "from-orange-400",
+                  "to-red-400",
+                  "text-white",
+                  "shadow-md"
+                );
+
+                updateSummary();
               });
-
-              selectedDate = date;
-              dateTimeError && dateTimeError.classList.add("hidden");
-
-              cell.classList.add(
-                "bg-gradient-to-br",
-                "from-orange-400",
-                "to-red-400",
-                "text-white",
-                "shadow-md"
-              );
-
-              updateSummary();
-            });
+            }
 
             calendarGrid.appendChild(cell);
-          });
+          }
+
+          updateMonthNavButtons();
         }
 
         function updateSummary() {
-          
           if (appointmentType) {
             summaryType.textContent =
               appointmentType === "in-person" ? "In person" : "Online";
-            hiddenType.value = appointmentType; 
+            hiddenType.value = appointmentType;
           } else {
             summaryType.textContent = "Not selected";
             hiddenType.value = "";
@@ -721,7 +809,7 @@
 
           if (selectedDate) {
             summaryDate.textContent = formatDateForSummary(selectedDate);
-            hiddenDate.value = selectedDate.toDateString(); 
+            hiddenDate.value = selectedDate.toDateString();
           } else {
             summaryDate.textContent = "Not selected";
             hiddenDate.value = "";
@@ -729,7 +817,7 @@
 
           if (selectedTime) {
             summaryTime.textContent = selectedTime;
-            hiddenTime.value = selectedTime; 
+            hiddenTime.value = selectedTime;
           } else {
             summaryTime.textContent = "Not selected";
             hiddenTime.value = "";
@@ -737,7 +825,7 @@
 
           const price = getTotalPrice();
           summaryAmount.textContent = "₹" + price;
-          hiddenPrice.value = price; 
+          hiddenPrice.value = price;
         }
 
         function clearFieldError(key) {
@@ -879,7 +967,6 @@
               return;
             }
 
-            
             const myFormData = new FormData(bookingForm);
 
             fetch("/", {
@@ -890,7 +977,6 @@
               body: new URLSearchParams(myFormData).toString(),
             })
               .then(() => {
-               
                 successService.textContent =
                   service === "palm-reading"
                     ? "Palm Reading"
@@ -915,11 +1001,6 @@
           });
         }
 
-        function clearFieldError(key) {
-          const errEl = fieldErrors[key];
-          if (errEl) errEl.classList.add("hidden");
-        }
-
         Object.keys(fields).forEach(function (key) {
           const el = fields[key];
           if (!el) return;
@@ -932,6 +1013,24 @@
             });
           }
         });
+
+        if (prevMonthBtn) {
+          prevMonthBtn.addEventListener("click", function () {
+            if (currentMonthOffset > 0) {
+              currentMonthOffset--;
+              renderCalendar();
+            }
+          });
+        }
+
+        if (nextMonthBtn) {
+          nextMonthBtn.addEventListener("click", function () {
+            if (currentMonthOffset < maxMonthOffset) {
+              currentMonthOffset++;
+              renderCalendar();
+            }
+          });
+        }
 
         renderCalendar();
       });
